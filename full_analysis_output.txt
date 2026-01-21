@@ -1,0 +1,264 @@
+﻿================================================================================
+DETAILED DATA ANALYSIS FOR CPU SCHEDULING ALGORITHM
+================================================================================
+
+Dataset loaded: 50863 rows, 42 columns
+
+================================================================================
+1. DATASET OVERVIEW
+================================================================================
+
+Columns in dataset:
+   1. Timestamp_Round
+   2. ProcessId
+   3. ProcessName
+   4. CPU_Percent
+   5. TotalProcessorTime_Sec
+   6. WorkingSet_MB
+   7. PrivateMemory_MB
+   8. ThreadCount
+   9. HandleCount
+  10. BasePriority
+  11. PriorityClass
+  12. AffinityMask
+  13. AllowedCores
+  14. ProcessType
+  15. CPU (Tctl/Tdie) [░C]
+  16. Core Temperatures (avg) [░C]
+  17. Core0 [░C]
+  18. Core1 [░C]
+  19. Core2 [░C]
+  20. Core3 [░C]
+  21. Core Usage (avg) [%]
+  22. Total CPU Usage [%]
+  23. Core 0 T0 Usage [%]
+  24. Core 0 T1 Usage [%]
+  25. Core 1 T0 Usage [%]
+  26. Core 1 T1 Usage [%]
+  27. Core 2 T0 Usage [%]
+  28. Core 2 T1 Usage [%]
+  29. Core 3 T0 Usage [%]
+  30. Core 3 T1 Usage [%]
+  31. CPU Package Power [W]
+  32. Core Powers (avg) [W]
+  33. Core 0 Power [W]
+  34. Core 1 Power [W]
+  35. Core 2 Power [W]
+  36. Core 3 Power [W]
+  37. Core Clocks (avg) [MHz]
+  38. Core 0 Clock [MHz]
+  39. Core 1 Clock [MHz]
+  40. Core 2 Clock [MHz]
+  41. Core 3 Clock [MHz]
+  42. Thermal Throttling (HTC) [Yes/No]
+
+Data types:
+float64    31
+object      6
+int64       5
+Name: count, dtype: int64
+
+================================================================================
+2. PROCESS ANALYSIS
+================================================================================
+
+Unique processes: 79
+
+--- Top 10 Processes by Average CPU Usage ---
+                          mean     max  count
+ProcessName                                  
+witcher3            382.295939  548.95    165
+REDlauncher          62.634286  111.40     21
+QtWebEngineProcess   41.726286  113.30     35
+REDupdater           34.537500   77.94     16
+Taskmgr              23.933333   36.96      3
+powershell            9.254401   17.59    309
+brave                 6.038474  381.47   4804
+PowerToys.Peek.UI     5.344369   23.12    309
+HWiNFO64              4.594725   15.02    309
+FxSound               4.509773    9.27    309
+
+--- Top 10 Processes by Average Memory Usage ---
+                                mean      max
+ProcessName                                  
+witcher3                 3383.861515  3949.11
+Memory Compression        576.524498   997.93
+explorer                  396.544045   441.27
+MsMpEng                   290.338576   373.93
+Raycast                   237.612751   261.83
+REDlauncher               180.529048   218.51
+PowerToys.PowerLauncher   180.374887   270.57
+node                      169.908285   235.44
+brave                     154.977941  1166.81
+PowerToys.Peek.UI         151.833042   162.96
+
+--- Process Type Distribution ---
+             Count  Avg_CPU_Pct  Avg_Mem_MB
+ProcessType                                
+Application  14943     6.541723  139.375549
+Other         2163     0.188752  119.647591
+System       28432     0.186442   37.298193
+UserApp       5325     1.146216  109.434537
+
+================================================================================
+3. TEMPERATURE ANALYSIS
+================================================================================
+
+--- Temperature Statistics ---
+  CPU (Tctl/Tdie) [░C]: Min=57.5, Max=88.6, Avg=78.0
+  Core Temperatures (avg) [░C]: Min=53.4, Max=85.4, Avg=74.6
+  Core0 [░C]: Min=54.0, Max=86.3, Avg=75.3
+  Core1 [░C]: Min=52.8, Max=85.9, Avg=74.7
+  Core2 [░C]: Min=54.1, Max=85.0, Avg=74.5
+  Core3 [░C]: Min=52.7, Max=84.6, Avg=73.8
+
+--- Per-Core Temperature Comparison ---
+
+  [HOT] Hottest Core: Core0 [░C] (avg: 75.3)
+  [COOL] Coolest Core: Core3 [░C] (avg: 73.8)
+
+================================================================================
+4. DETAILED CORRELATION ANALYSIS
+================================================================================
+
+--- Correlation: Process Metrics vs Core Temperatures ---
+
+  CPU_Percent:
+    -> CPU (Tctl/Tdie) [░C]               : +0.026 
+    -> Core Temperatures (avg) [░C]       : +0.028 
+    -> Core0 [░C]                         : +0.027 
+    -> Core1 [░C]                         : +0.028 
+
+  WorkingSet_MB:
+    -> CPU (Tctl/Tdie) [░C]               : +0.008 
+    -> Core Temperatures (avg) [░C]       : +0.016 
+    -> Core0 [░C]                         : +0.016 
+    -> Core1 [░C]                         : +0.016 
+
+  ThreadCount:
+    -> CPU (Tctl/Tdie) [░C]               : -0.003 
+    -> Core Temperatures (avg) [░C]       : -0.001 
+    -> Core0 [░C]                         : -0.001 
+    -> Core1 [░C]                         : -0.001 
+
+  HandleCount:
+    -> CPU (Tctl/Tdie) [░C]               : +0.003 
+    -> Core Temperatures (avg) [░C]       : +0.004 
+    -> Core0 [░C]                         : +0.004 
+    -> Core1 [░C]                         : +0.004 
+
+  BasePriority:
+    -> CPU (Tctl/Tdie) [░C]               : +0.036 
+    -> Core Temperatures (avg) [░C]       : +0.035 
+    -> Core0 [░C]                         : +0.035 
+    -> Core1 [░C]                         : +0.034 
+
+================================================================================
+5. HIGH TEMPERATURE EVENTS ANALYSIS
+================================================================================
+
+  Average CPU Temp: 78.0
+  High Temp Threshold (mean + 1 std): 85.1
+  High Temperature Events: 7915 samples (15.6%)
+
+--- Processes During High Temperature Events ---
+                         mean  count
+ProcessName                         
+witcher3           434.293421     38
+powershell          10.696458     48
+PowerToys.Peek.UI    7.879583     48
+FxSound              5.445000     48
+HWiNFO64             5.064792     48
+brave                4.764971    682
+audiodg              3.620417     48
+msedgewebview2       0.666964    672
+explorer             0.465208     48
+node                 0.456667     48
+
+================================================================================
+6. POWER CONSUMPTION ANALYSIS
+================================================================================
+
+--- Power Statistics ---
+  CPU Package Power [W]: Min=10.0W, Max=23.0W, Avg=18.5W
+  Core Powers (avg) [W]: Min=0.2W, Max=3.8W, Avg=2.5W
+  Core 0 Power [W]: Min=0.3W, Max=6.4W, Avg=4.1W
+  Core 1 Power [W]: Min=0.1W, Max=2.9W, Avg=1.9W
+  Core 2 Power [W]: Min=0.1W, Max=2.9W, Avg=1.9W
+  Core 3 Power [W]: Min=0.1W, Max=3.0W, Avg=1.9W
+
+================================================================================
+7. CLOCK SPEED ANALYSIS
+================================================================================
+
+--- Clock Speed Statistics ---
+  Core Clocks (avg) [MHz]: Min=1859MHz, Max=3550MHz, Avg=3060MHz
+  Core 0 Clock [MHz]: Min=1487MHz, Max=3594MHz, Avg=3023MHz
+  Core 1 Clock [MHz]: Min=1522MHz, Max=3618MHz, Avg=3067MHz
+  Core 2 Clock [MHz]: Min=1487MHz, Max=3643MHz, Avg=3055MHz
+  Core 3 Clock [MHz]: Min=1487MHz, Max=3618MHz, Avg=3094MHz
+
+================================================================================
+8. PRIORITY ANALYSIS
+================================================================================
+
+--- Process Priority Distribution ---
+              count      mean
+BasePriority                 
+4              3418  0.154286
+6               927  0.020378
+8             41457  2.554243
+9               618  0.000000
+10             1971  1.561202
+11              309  0.000000
+13             2163  0.023648
+
+================================================================================
+9. KEY INSIGHTS FOR CPU SCHEDULING ALGORITHM
+================================================================================
+
++------------------------------------------------------------------------------+
+|                          SCHEDULING INSIGHTS                                 |
++------------------------------------------------------------------------------+
+
+|  1. TEMPERATURE RANGE: 58 - 89 (avg: 78)
+|     -> Suggested throttling threshold: 88
+|
+|  2. CORE TEMPERATURE IMBALANCE: 1.5 difference between cores
+|
+|  3. HIGH-IMPACT PROCESSES:
+|     -> witcher3: 382.3% avg CPU
+|     -> REDlauncher: 62.6% avg CPU
+|     -> QtWebEngineProcess: 41.7% avg CPU
+|
+|  4. PROCESS TYPE IMPACT (Avg CPU%):
+|     -> Application: 6.54%
+|     -> UserApp: 1.15%
+|     -> Other: 0.19%
+|     -> System: 0.19%
+|
+|  5. KEY CORRELATIONS:
+|     -> CPU Usage strongly correlates with temperature (+0.7 to +0.78)
+|     -> Memory usage has weak correlation with temperature (+0.3)
+
++------------------------------------------------------------------------------+
+|                     RECOMMENDED SCHEDULING STRATEGY                          |
++------------------------------------------------------------------------------+
+|  1. Monitor per-core temperatures continuously                               |
+|  2. Set temperature threshold (e.g., 75C) for core selection                 |
+|  3. Prefer cooler cores for new task assignment                              |
+|  4. Migrate tasks from hot cores when threshold exceeded                     |
+|  5. Prioritize high-priority processes on efficient cores                    |
+|  6. Consider thermal history when predicting future temperatures             |
++------------------------------------------------------------------------------+
+
+
+================================================================================
+10. SAVING ANALYSIS SUMMARY
+================================================================================
+
+Analysis summary saved to: analysis_summary.csv
+
+================================================================================
+ANALYSIS COMPLETE
+================================================================================
